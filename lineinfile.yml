@@ -1,0 +1,7 @@
+---
+- hosts: dev
+  tasks: 
+  - lineinfile:
+      path: /etc/selinux/config 
+      regexp: "^SELINUX="
+      line: SELINUX=enforcing 
