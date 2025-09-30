@@ -1,0 +1,54 @@
+  # Ansible Ad-hoc Commands Cheat Sheet
+
+1. Ping all hosts
+ansible all -m ping
+
+2. Run command on remote hosts
+ansible all -m command -a "uptime"
+ansible web -m command -a "df -h"
+
+3. Run shell commands
+ansible all -m shell -a "echo $PATH"
+ansible all -m shell -a "cat /etc/os-release"
+
+4. Copy files
+ansible all -m copy -a "src=/etc/hosts dest=/tmp/hosts"
+ansible all -m copy -a "src=./app.conf dest=/etc/app.conf owner=root group=root mode=0644"
+
+5. Fetch files from remote
+ansible all -m fetch -a "src=/etc/hosts dest=/tmp/hosts"
+
+6. File/Directory management
+ansible all -m file -a "path=/tmp/testfile state=touch"
+ansible all -m file -a "path=/tmp/testdir state=directory mode=0755"
+ansible all -m file -a "path=/tmp/testfile state=absent"
+
+7. Install/Remove packages
+ansible all -m yum -a "name=httpd state=present"    # RHEL/CentOS
+ansible all -m apt -a "name=nginx state=present"    # Debian/Ubuntu
+ansible all -m yum -a "name=httpd state=absent"
+
+8. Service management
+ansible all -m service -a "name=httpd state=started"
+ansible all -m service -a "name=httpd state=restarted"
+ansible all -m service -a "name=httpd state=stopped"
+
+9. User and Group management
+ansible all -m user -a "name=devops state=present groups=wheel"
+ansible all -m user -a "name=devops state=absent"
+
+10. Gather facts
+ansible all -m setup
+ansible all -m setup -a "filter=ansible_hostname"
+
+11. Reboot hosts
+ansible all -m reboot
+
+12. Check connectivity with custom inventory
+ansible webservers -i inventory.ini -m ping
+
+13. Change remote user / Become root
+ansible all -m command -a "whoami" -u ubuntu --become
+
+14. Parallel execution & Forks
+ansible all -m ping -f 10
