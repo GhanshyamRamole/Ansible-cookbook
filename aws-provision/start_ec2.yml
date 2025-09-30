@@ -1,0 +1,16 @@
+---
+- name: Start EC2 Instance
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Start the EC2 instance
+      amazon.aws.ec2_instance:
+        region: "us-east-1"
+        instance_ids: ["i-xxxxxxxxxxxx"]  # Replace with your instance ID
+        state: started
+      register: result
+
+    - name: Display Start Status
+      debug:
+        msg: "EC2 Instance {{ result.instances[0].id }} has been started."
+

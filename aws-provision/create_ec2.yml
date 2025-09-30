@@ -1,0 +1,21 @@
+---
+- name: Launch EC2 Instance
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Launch an EC2 instance
+      amazon.aws.ec2_instance:
+        name: "MyAnsibleEC2"
+        region: "us-east-1"
+        key_name: "my-key-pair"
+        instance_type: "t2.micro"
+        security_group: "my-security-group"
+        image_id: "ami-0c55b159cbfafe1f0"  # Replace with a valid AMI ID
+        count: 1
+        tags:
+          Environment: "Development"
+      register: ec2
+    - name: Display EC2 instance details
+      debug:
+        msg: "EC2 Instance {{ ec2.instances[0].id }} launched successfully!"
+
