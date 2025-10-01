@@ -1,0 +1,11 @@
+---
+- name: Example of Vault Usage
+  hosts: localhost
+  vars_files:
+    - secret.yml
+  tasks:
+    - name: Print database credentials
+      debug:
+        msg: "user_name={{ username}}, credentials={{ password }}"
+
+
