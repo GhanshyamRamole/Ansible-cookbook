@@ -9,3 +9,7 @@
         msg: "user_name={{ username}}, credentials={{ password }}"
 
 
+# echo "Pas****d" > ~/.vault_pass.txt create vault_pass.txt with permission chmod 600 ~/.vault_pass.txt
+# ansible-playbook playbook.yml --vault-password-file ~/.vault_pass.txt use this command to execute the playbook Instead of:
+# ansible-playbook playbook.yml --ask-vault-pass where we have to insert password manually
+
