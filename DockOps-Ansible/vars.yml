@@ -1,0 +1,6 @@
+- repo_url: https://github.com/GhanshyamRamole/Portfolio.git
+  repo_dir: portfolio
+  image_name: ghanshyamramole/portfolio
+  image_tag: latest
+  container_name: web
+  dockerhub_username: ghanshyamramole

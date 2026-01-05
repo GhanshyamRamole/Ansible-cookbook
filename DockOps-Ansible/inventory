@@ -1,0 +1,7 @@
+[web]
+node1
+node2
+[web:vars]
+ansible_port=22
+ansible_user=itadmin
+ansible_password=111

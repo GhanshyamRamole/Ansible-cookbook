@@ -1,0 +1,60 @@
+---
+- name: Host website using Docker and push image to Docker Hub
+  hosts: node1
+  become: yes
+  gather_facts: no
+
+  vars_files:
+    - vault.yml
+    - vars.yml 
+
+  tasks:
+
+    - name: Install required packages
+      yum:
+        name:
+          - git
+          - docker
+        state: present
+
+    - name: Start and enable Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Clone application source code
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ repo_dir }}"
+        force: yes
+
+    - name: Build Docker image
+      docker_image:
+        name: "{{ image_name }}"
+        tag: "{{ image_tag }}"
+        source: build
+        build:
+          path: "{{ repo_dir }}"
+          dockerfile: public/src/Dockerfile
+
+    - name: Login to Docker Hub
+      docker_login:
+        username: "{{ dockerhub_username }}"
+        password: "{{ dockerhub_password }}"
+
+    - name: Push image to Docker Hub
+      docker_image:
+        name: "{{ image_name }}"
+        tag: "{{ image_tag }}"
+        push: yes
+        source: local 
+
+    - name: Run Docker container
+      docker_container:
+        name: "{{ container_name }}"
+        image: "{{ image_name }}:{{ image_tag }}"
+        state: started
+        ports:
+          - "3000:3000"
+
