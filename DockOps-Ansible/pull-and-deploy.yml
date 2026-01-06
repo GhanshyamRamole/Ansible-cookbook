@@ -7,7 +7,17 @@
     -  vars.yml
 
   tasks:
-
+    - name: Inatallation of requirements 
+      yum: 
+        name: 
+          - git 
+          - docker
+        state: present
+    - name: start and enable docker service
+      service: 
+        name: docker
+        state: started
+        enabled: yes
     - name: Pull Docker image from Docker Hub
       community.docker.docker_image:
         name: "{{ image_name }}"
