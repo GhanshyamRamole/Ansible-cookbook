@@ -1,0 +1,19 @@
+---
+- name: Install Docker on all nodes
+  hosts: all
+  become: true
+  roles:
+    - docker
+
+- name: Initialize Swarm Manager
+  hosts: manager
+  become: true
+  roles:
+    - swarm-manager
+
+- name: Join Worker Nodes
+  hosts: workers
+  become: true
+  roles:
+    - swarm-worker
+
