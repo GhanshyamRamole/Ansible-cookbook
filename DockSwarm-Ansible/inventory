@@ -1,0 +1,11 @@
+[manager]
+node1
+
+[workers]
+node2 
+node3
+
+[all:vars]
+ansible_port=22
+ansible_user=itadmin
+ansible_password=111
