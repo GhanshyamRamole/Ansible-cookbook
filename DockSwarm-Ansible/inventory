@@ -2,7 +2,6 @@
 node1
 
 [workers]
-node2 
 node3
 
 [all:vars]
