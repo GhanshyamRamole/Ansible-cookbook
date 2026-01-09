@@ -4,3 +4,4 @@
   image_tag: latest
   container_name: web
   dockerhub_username: ghanshyamramole
+  app_port: 80
