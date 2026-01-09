@@ -35,8 +35,8 @@
         tag: "{{ image_tag }}"
         source: build
         build:
-          path: "{{ repo_dir }}"
-          dockerfile: public/src/Dockerfile
+          path: "{{ repo_dir }}/public/src"
+          dockerfile: Dockerfile
 
     - name: Login to Docker Hub
       docker_login:
