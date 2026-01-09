@@ -71,8 +71,11 @@ Encrypted file containing:
 
 4. **Run deployment**:
    ```bash
-   # Deploy application
+   # Full deployment (build and deploy)
    ansible-playbook -i inventory playbook.yml --ask-vault-pass
+   
+   # Pull and deploy on other nodes
+   ansible-playbook -i inventory pull-and-deploy.yml --ask-vault-pass
    ```
 
 ## Playbook Tasks
