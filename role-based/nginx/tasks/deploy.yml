@@ -1,0 +1,16 @@
+---
+- name: Copy website index page
+  copy:
+    src: index.html
+    dest: /usr/share/nginx/html/index.html
+    owner: nginx
+    group: nginx
+    mode: '0644'
+  notify: Restart nginx
+
+- name: Ensure nginx service is running
+  service:
+    name: nginx
+    state: started
+    enabled: yes
+
