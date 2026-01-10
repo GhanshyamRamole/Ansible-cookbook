@@ -1,0 +1,22 @@
+- name: Remove Web Application
+  hosts: webservers
+  become: yes
+  tasks:
+    - name: Uninstall Nginx
+      package:
+        name: nginx
+        state: absent
+
+    - name: Ensure Nginx is not running
+      service:
+        name: nginx
+        state: stopped
+        enabled: no
+
+    - name: Delete index.html
+      file:
+        state: absent
+        path: /usr/share/nginx/html/index.html
+     
+
+

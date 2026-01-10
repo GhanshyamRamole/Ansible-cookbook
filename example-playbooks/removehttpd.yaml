@@ -1,0 +1,21 @@
+---
+- name: Uninstall and stop httpd
+  hosts: webservers
+  become: yes  # Run with sudo privileges
+
+  tasks:
+    - name: Install httpd package
+      yum:
+        name: httpd
+        state: absent
+    - name: delete index.html
+      file:
+        path: /var/www/html/index.html
+        state: absent      
+
+    - name: Start and enable httpd service
+      service:
+        name: httpd
+        state: stopped
+        enabled: no
+

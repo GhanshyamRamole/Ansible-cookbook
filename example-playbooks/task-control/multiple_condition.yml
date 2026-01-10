@@ -1,0 +1,7 @@
+---
+- hosts: prod 
+  tasks:
+  - yum:
+      name: httpd
+      state: latest 
+    when: ansible_distribution == "RedHat" or  ansible_version == "8"  
