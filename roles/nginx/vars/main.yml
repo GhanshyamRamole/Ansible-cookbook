@@ -1,5 +1,0 @@
----
-# vars file for httpd_deploy_role
-
-nginx_port: 80
-
