@@ -1,7 +1,0 @@
----
-- name: Deploy Nginx on RHEL/CentOS
-  hosts: webservers
-  become: yes
-  roles:
-    - nginx
-
